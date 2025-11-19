@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Home - Salas de estudio{% endblock title %}
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+{% endblock css %}
+
+{% block main %}
+    <div class="salas-container">
+        <div class="salas-header">
+            <h1>Listado de Salas</h1>
+            <p>Usa los enlaces para ver detalles o crear reservas.</p>
+        </div>
+
+        <div class="salas-grid">
+            <!-- Salas Disponibles -->
+            <div class="salas-section salas-available">
+                <h2>Salas Disponibles</h2>
+                <ul class="salas-list">
+                    {% for sala in salas_disponibles %}
+                        <li class="sala-item">
+                            <div class="sala-info">
+                                <div class="sala-nombre">
+                                    {{ sala.nombre }}
+                                    <span class="status-badge available">Disponible</span>
+                                </div>
+                                <div class="sala-capacidad">Capacidad: {{ sala.capacidad_maxima }} personas</div>
+                            </div>
+                            <div class="sala-accion">
+                                <a href="{% url 'detalle_sala' sala.id %}">Ver detalle</a>
+                            </div>
+                        </li>
+                    {% empty %}
+                        <div class="empty-message">No hay salas disponibles.</div>
+                    {% endfor %}
+                </ul>
+            </div>
+			<!-- Salas Reservadas -->
+            <div class="salas-section salas-reserved">
+                <h2>Salas Reservadas</h2>
+                <ul class="salas-list">
+                    {% for sala in salas_reservadas %}
+                        <li class="sala-item reserved">
+                            <div class="sala-info">
+                                <div class="sala-nombre">
+                                    {{ sala.nombre }}
+                                    <span class="status-badge reserved">Reservada</span>
+                                </div>
+                                <div class="sala-capacidad">Capacidad: {{ sala.capacidad_maxima }} personas</div>
+                            </div>
+                            <div class="sala-accion">
+                                <a href="{% url 'detalle_sala' sala.id %}">Ver detalle</a>
+                            </div>
+                        </li>
+                    {% empty %}
+                        <div class="empty-message">No hay salas reservadas.</div>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+
+        <div class="action-buttons">
+            <a class="btn btn-primary" href="{% url 'crear_reserva' %}">Crear una reserva</a>
+        </div>
+    </div>
+{% endblock main %}

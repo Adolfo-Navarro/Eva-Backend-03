@@ -1,0 +1,193 @@
+/* Página de inicio - Listado de salas */
+
+.salas-container {
+    background: white;
+    border-radius: 0.75rem;
+    padding: 2rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    margin-bottom: 2rem;
+}
+
+.salas-header {
+    margin-bottom: 2rem;
+    border-bottom: 2px solid #e2e8f0;
+    padding-bottom: 1.5rem;
+}
+
+.salas-header h1 {
+    margin-bottom: 0.5rem;
+}
+
+.salas-header p {
+    color: #64748b;
+    font-size: 1.1rem;
+}
+
+/* Grid to display available and reserved lists side-by-side */
+.salas-grid {
+    display: flex;
+    gap: 2rem;
+    align-items: flex-start;
+    margin-top: 1.5rem;
+}
+
+.salas-section {
+    flex: 1;
+    min-width: 0; /* allow flex children to shrink correctly */
+}
+
+.salas-section h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #1e293b;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 3px solid #2563eb;
+}
+
+.salas-section:last-of-type h2 {
+    border-bottom-color: #ef4444;
+}
+
+.salas-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.sala-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.25rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 0.5rem;
+    margin-bottom: 1rem;
+    transition: all 0.3s ease;
+    background: #f8fafc;
+}
+
+.sala-item:hover {
+    background-color: #f1f5f9;
+    border-color: #2563eb;
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.15);
+    transform: translateX(4px);
+}
+
+.sala-item.reserved {
+    background: #fef2f2;
+    border-color: #fecaca;
+}
+
+.sala-item.reserved:hover {
+    background-color: #fee2e2;
+    border-color: #ef4444;
+    box-shadow: 0 4px 12px rgba(239, 68, 68, 0.15);
+}
+
+.sala-info {
+    flex: 1;
+}
+
+.sala-nombre {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #1e293b;
+    margin-bottom: 0.5rem;
+}
+
+/* Status badge next to sala name */
+.status-badge {
+    display: inline-block;
+    margin-left: 0.75rem;
+    padding: 0.15rem 0.55rem;
+    font-size: 0.8rem;
+    font-weight: 700;
+    border-radius: 999px;
+    vertical-align: middle;
+}
+.status-badge.available {
+    background-color: #ecfdf5;
+    color: #065f46;
+    border: 1px solid #bbf7d0;
+}
+.status-badge.reserved {
+    background-color: #fff1f2;
+    color: #9f1239;
+    border: 1px solid #fecaca;
+}
+
+.sala-capacidad {
+    color: #64748b;
+    font-size: 0.95rem;
+}
+
+.sala-accion {
+    margin-left: 1.5rem;
+}
+
+.sala-accion a {
+    display: inline-block;
+    padding: 0.625rem 1.25rem;
+    background-color: #2563eb;
+    color: white;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.sala-accion a:hover {
+    background-color: #1e40af;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+}
+
+.empty-message {
+    text-align: center;
+    padding: 2rem;
+    color: #64748b;
+    font-size: 1.1rem;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+    justify-content: center;
+}
+
+.action-buttons .btn {
+    min-width: 200px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .salas-container {
+        padding: 1.5rem;
+    }
+
+    .sala-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+
+    .sala-accion {
+        margin-left: 0;
+        width: 100%;
+    }
+
+    .sala-accion a {
+        width: 100%;
+        text-align: center;
+    }
+
+    .action-buttons {
+        flex-direction: column;
+    }
+
+    .action-buttons .btn {
+        width: 100%;
+    }
+}

@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Detalle de la Sala{% endblock title %}
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/detalle_sala.css' %}">
+{% endblock css %}
+
+{% block main %}
+    <div class="detalle-container">
+        <div class="detalle-header">
+            <h1>Detalle de la Sala</h1>
+        </div>
+
+        {% if sala %}
+            <div class="sala-card">
+                <div class="sala-detail-item">
+                    <span class="sala-detail-label">Nombre:</span>
+                    <span class="sala-detail-value">{{ sala.nombre }}</span>
+                </div>
+                <div class="sala-detail-item">
+                    <span class="sala-detail-label">Capacidad Máxima:</span>
+                    <span class="sala-detail-value">{{ sala.capacidad_maxima }} personas</span>
+                </div>
+                <div class="sala-detail-item">
+                    <span class="sala-detail-label">Estado:</span>
+                    <span class="sala-disponible {% if sala.disponible %}disponible{% else %}no-disponible{% endif %}">
+                        {% if sala.disponible %}✓ Disponible{% else %}✗ No disponible{% endif %}
+                    </span>
+                </div>
+                <div class="sala-detail-item">
+                    <span class="sala-detail-label">Reservas Activas:</span>
+                    <span class="reservas-badge">{{ sala.reservas.count }}</span>
+                </div>
+            </div>
+
+            <div class="action-buttons">
+                <a class="btn-action btn-primary-action" href="{% url 'crear_reserva' %}">Crear Reserva</a>
+                <a class="btn-action btn-secondary-action" href="{% url 'home' %}">Volver</a>
+            </div>
+        {% else %}
+            <div class="alert alert-warning">No se encontró la sala solicitada.</div>
+            <div class="action-buttons">
+                <a class="btn-action btn-secondary-action" href="{% url 'home' %}" style="flex: 1;">Volver al inicio</a>
+            </div>
+        {% endif %}
+    </div>
+{% endblock main %}
