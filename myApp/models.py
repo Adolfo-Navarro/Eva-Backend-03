@@ -38,6 +38,15 @@ class Reserva(models.Model):
         verbose_name_plural = "Reservas"
         ordering = ['-fecha_hora_inicio']
     
+    def clean(self):
+        
+        if self.fecha_hora_termino and self.fecha_hora_inicio:
+            duracion = self.fecha_hora_termino - self.fecha_hora_inicio
+            if duracion > timedelta(hours=2):
+                raise ValidationError('La reserva no puede durar más de 2 horas.')
+            if duracion < timedelta(0):
+                raise ValidationError('La hora de término debe ser posterior a la hora de inicio.')
+    
     def save(self, *args, **kwargs):
         # Calcular fecha_hora_termino automáticamente si no está especificada
         if not self.fecha_hora_termino:
